@@ -1,0 +1,5 @@
+[INFO] 2022-03-03T16:04:29,353 [main] com.pugna.main.PugnaMain  - register database begin
+[INFO] 2022-03-03T16:04:29,517 [main] com.pugna.main.PugnaMain  - register database done
+[INFO] 2022-03-03T16:04:29,519 [main] com.pugna.main.PugnaMain  - start with command: crawlcandle
+[INFO] 2022-03-03T16:04:29,524 [main] com.pugna.crawler.candle.service.impl.StockChartCrawlerServiceImpl  - begin to crawl stock chart
+[INFO] 2022-03-03T16:11:14,602 [main] com.pugna.crawler.candle.service.impl.StockChartCrawlerServiceImpl  - crawl stock chart successfully

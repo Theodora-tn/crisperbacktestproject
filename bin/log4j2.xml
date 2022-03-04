@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="filename">${sys:logname}</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%p] %d{ISO8601} [%t] %c %M - %m%n" />
+		</Console>
+		<File name="File" fileName="${filename}" append="false">
+			<PatternLayout pattern="[%p] %d{ISO8601} [%t] %c %M - %m%n" />
+		</File>
+		<JDBC name="Database" tableName="tbsystemlog">
+	      <ConnectionFactory class="com.shinobiutil.logging.LoggerConnection" method="getDatabaseConnection" />
+	      <Column name="logtime" isEventTimestamp="true" />
+	      <Column name="loglevel" pattern="%level" isUnicode="false"/>
+	      <Column name="logname" pattern="${sys:logname}" isUnicode="false"/>
+	      <Column name="logmessage" pattern="[%p] %d{ISO8601} [%t] %c %M - %m%n" isUnicode="false"/>
+	      <Column name="throwable" pattern="%ex{full}" isUnicode="false"/>
+    	</JDBC>
+  
+		<Async name="Async">
+			<AppenderRef ref="Database" />
+			<AppenderRef ref="File"/>
+		</Async>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="Async" />
+		</Root>
+	</Loggers>
+</Configuration>
